@@ -18,4 +18,4 @@ Should work on most fields except File Upload (haven't looked at that).
 
 Pretty simple - works for my purpose but may have bugs if pushed.
 
-Email me at chris@chrisgoddard.me for questions/comments or fork and improve!
+Email me at chris [at] chrisgoddard.me for questions/comments or fork and improve!
