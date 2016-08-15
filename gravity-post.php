@@ -82,6 +82,7 @@ class GravityHTTPRequest {
 
 				} elseif ($field['http_output'] === 'serialize') {
 
+                    $serialize = [];
 
 					foreach ($field['inputs'] as $input) {
 
