@@ -1,0 +1,7 @@
+#gform_http_settings .additional_options {
+	margin: 20px 0;
+}
+
+#gform_http_settings input[type="text"]{
+	display: block;
+}
