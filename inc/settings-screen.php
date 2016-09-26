@@ -1,22 +1,12 @@
 <?php
-
 /*
  *	Gravity HTTP Request Settings Screen
  */
-
-
 ?>
 
-
- <h3><?php echo self::name ?> Settings</h3>
-
+<h3><?php echo self::name ?> Settings</h3>
  
 <form method="post" id="gform_http_settings">
-<?php 
-//echo "<pre>";
-//print_r($form); 
-//echo "</pre>";
-?>
  <table class="gforms_form_settings">
 
  <tbody>
@@ -70,32 +60,25 @@
 	    <td colspan="2"><h4 class="gf_settings_subgroup_title"><?php echo $form['title'] ?> Mapping</h4></td>
     </tr>
 
-    <?php
+    <?php foreach ($form['fields'] as $i => $field): ?>
 
-	//$i=0;
-
-	foreach ($form['fields'] as $i => $field):
-
-	$field_id = $field['id']; ?>
+	<?php $field_id = $field['id']; ?>
 
     <tr>
-	    	<th>
-				<?php
+    	<th>
+			<?php
 
-				if ($field['adminLabel']) {
-				
-					echo $field['adminLabel'];
-				
-				} elseif ($field['label']) {
-				
-					echo $field['label'];
-				
-				} ?>
-
-	    	</th><!-- end row header -->
-
-	    	<td>
-
+			if ($field['adminLabel']) {
+			
+				echo $field['adminLabel'];
+			
+			} elseif ($field['label']) {
+			
+				echo $field['label'];
+			
+			} ?>
+    	</th><!-- end row header -->
+    	<td>
 			<?php if ($field['inputs']) { // if field has multiple inputs defined ?>
 
 	    		<label for="field_<?php echo $field_id; ?>_serialize">Serialize Multi-Field Input?</label>
@@ -142,48 +125,33 @@
 	    </td>
     </tr>
 
-    <?php
-
-$i++;
-endforeach; ?>
-
-
+    <?php endforeach; ?>
 
  </tbody>
 
  </table>
  
- 
 <?php wp_nonce_field('gforms_save_http_settings', 'gforms_save_http_settings') ?>
 
 <input type="hidden" id="date_updated" name="date_updated" value="<?php echo date('D, d M Y H:i:s'); ?>">
-
 <input type="hidden" id="gform_http_settings_meta" name="gform_http_settings_meta" value="">
- 
 <input type="button" id="gform_save_settings" name="gform_save_settings" value="Update Form Settings" class="button-primary gfbutton" onclick="SaveFormSettings();">
 
 </form>
 
-
- <script>
+<script>
 
 	    var form = <?php echo json_encode($form); ?>;
 
         jQuery(document).ready(function($){
 
             HandleUnsavedChanges('#gform_http_settings');
-
             ToggleConditionalLogic(true, 'form_button');
-
             jQuery('tr:hidden .gf_animate_sub_settings').hide();
             
             $('.serialize_select').each(function(){
-	            
 	            updateSerializeOption($(this).attr('name'));
-	            
             })
-
-         //   jQuery(document).trigger('gform_load_form_settings', [form]);
 
         });
 
@@ -202,19 +170,13 @@ endforeach; ?>
                     console.log('"gform_before_update" is deprecated since version 1.7! Use "gform_pre_form_settings_save" php hook instead.');
             }
 
-
             jQuery("#gform_http_settings_meta").val(jQuery.toJSON(form));
             jQuery("form#gform_http_settings").submit();
-
         }
 
         function updateSerializeOption(field){
 
-	        console.log(field);
-
 	        var option = jQuery('#'+field).val();
-
-	        console.log(option);
 
 	        if(option == 'map'){
 		        jQuery('#'+field+'_input').hide('slow');
@@ -244,7 +206,4 @@ endforeach; ?>
         }
 
 
-
-
  </script>
-
